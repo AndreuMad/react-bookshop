@@ -30,8 +30,10 @@
   "author": "Cory House",
   "license": "MIT",
   "dependencies": {
+    "axios": "0.16.2",
     "bootstrap": "3.3.7",
     "object-assign": "4.1.0",
+    "prop-types": "15.5.10",
     "react": "15.5.4",
     "react-dom": "15.5.4",
     "react-redux": "5.0.5",
