@@ -1,7 +1,9 @@
 import {
   CREATE_BOOK_SUCCESS,
+  DELETE_BOOK_SUCCESS,
   FETCH_BOOK_BY_ID_SUCCESS,
-  FETCH_BOOK_SUCCESS } from '../constants/actions';
+  FETCH_BOOK_SUCCESS
+} from '../constants/actions';
 
 export const bookReducer = (state = [], action) => {
   switch(action.type) {
@@ -22,6 +24,11 @@ export const booksReducer = (state = [], action) => {
         ...state,
         Object.assign({}, action.book)
       ];
+
+    case DELETE_BOOK_SUCCESS:
+      return [...state].filter(book => {
+        return book.id !== action.id;
+      });
 
     case FETCH_BOOK_SUCCESS:
       return action.books;

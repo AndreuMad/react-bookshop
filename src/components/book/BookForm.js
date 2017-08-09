@@ -9,7 +9,7 @@ const BookForm = (props) => {
         event.preventDefault();
 
         const input = {
-          title: titleInput.value,
+          name: titleInput.value,
           author: authorInput.value,
           price: priceInput.value,
           year: yearInput.value
@@ -27,7 +27,7 @@ const BookForm = (props) => {
         <div className="col-sm-10">
           <input
             type="text"
-            name="title"
+            name="name"
             ref={node => titleInput = node}
             className="form-control"
           />

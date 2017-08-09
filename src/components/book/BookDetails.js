@@ -18,7 +18,7 @@ const BookDetails = ({ book, addToCart }) => {
           <br/>
           <button
             className="btn btn-primary"
-            onClick={event => addToCart(book)}
+            onClick={() => addToCart(book)}
           >
             Buy
           </button>

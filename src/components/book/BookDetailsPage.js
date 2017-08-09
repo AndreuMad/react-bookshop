@@ -9,6 +9,8 @@ class BookDetailsPage extends Component {
 
   constructor(props) {
     super(props);
+
+    this.addToCart = this.addToCart.bind(this);
   }
 
   componentDidMount() {
@@ -29,7 +31,7 @@ class BookDetailsPage extends Component {
     return (
       <div>
         <h1>Book Details Page</h1>
-        <BookDetails book={this.props.book} />
+        <BookDetails book={this.props.book} addToCart={this.addToCart} />
       </div>
     );
   }

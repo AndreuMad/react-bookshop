@@ -11,11 +11,17 @@ class Book extends Component {
     super(props);
 
     this.submitBook = this.submitBook.bind(this);
+    this.deleteBook = this.deleteBook.bind(this);
   }
 
   // Submit book handler
   submitBook(input) {
     this.props.createBook(input);
+  }
+
+  // Delete book handler
+  deleteBook(id) {
+    this.props.deleteBook(id);
   }
 
   render() {
@@ -32,13 +38,22 @@ class Book extends Component {
               </tr>
             </thead>
             <tbody>
-            {
+            {this.props.app.requestFinished ?
               this.props.books.map((book, index) => (
                 <tr key={index}>
-                  <td>{book.title}</td>
+                  <td>{book.name}</td>
                   <td><Link to={`/books/${book.id}`}>View</Link></td>
+                  <td>
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => this.deleteBook(book.id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
                 </tr>
-              ))
+              )) :
+              'loading...'
             }
             </tbody>
           </table>
@@ -54,18 +69,21 @@ class Book extends Component {
 
 Book.propTypes = {
   books: PropTypes.array.isRequired,
-  createBook: PropTypes.func.isRequired
+  createBook: PropTypes.func.isRequired,
+  deleteBook: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    books: state.books,
+    app: state.app,
+    books: state.books
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createBook: book => dispatch(bookActions.createBook(book))
+    createBook: book => dispatch(bookActions.createBook(book)),
+    deleteBook: id => dispatch(bookActions.deleteBook(id))
   };
 };
 

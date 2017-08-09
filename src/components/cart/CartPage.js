@@ -22,21 +22,29 @@ class CartPage extends Component {
             <td>Title</td>
             <td>Price</td>
           </tr>
-          {
-            this.props.items.map( (item, index) => {
+          {this.props.items.map( (item, index) => {
 
-              return (
-                <tr key={index}>
-                  <td>{item.title}</td>
-                  <td>{item.price}</td>
-                </tr>
-              );
-            })
-          }
+            return (
+              <tr key={index}>
+                <td>{item.name}</td>
+                <td>{item.price}</td>
+              </tr>
+            );
+          })}
         </table>
       </div>
     );
   }
 }
 
-export default CartPage;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    items: state.cart
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  fetchCart: bookId => dispatch(bookActions.fetchCart())
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartPage);
